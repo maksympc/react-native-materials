@@ -1,3 +1,2 @@
 # smartnotes
-
-Contains react-native app and other materials
+Contains react-native app and other related materials
