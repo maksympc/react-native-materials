@@ -180,14 +180,75 @@
 //     }
 // }
 
-//MyVerticalScrollView
+// //MyVerticalScrollView
+// import React, {Component} from 'react';
+// import MyVerticalScrollView from './components/scrollview/MyVerticalScrollView'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <MyVerticalScrollView/>
+//         );
+//     }
+// }
+
+
+// //MyHorizontalScrollView
+// import React, {Component} from 'react';
+// import MyHorizontalScrollView from './components/scrollview/MyHorizontalScrollView'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <MyHorizontalScrollView/>
+//         );
+//     }
+// }
+
+// //MyFlatList
+// import React, {Component} from 'react';
+// import MyFlatList from './components/flatList/MyFlatList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <MyFlatList/>
+//         );
+//     }
+// }
+
+// //DeleteFlatListItem
+// import React, {Component} from 'react';
+// import DeleteItemFlatList from './components/flatList/DeleteItemFlatList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <DeleteItemFlatList/>
+//         );
+//     }
+// }
+
+// //ViewAboveFlatList
+// import React, {Component} from 'react';
+// import ViewAboveFlatList from './components/flatList/ViewAboveFlatList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <ViewAboveFlatList/>
+//         );
+//     }
+// }
+
+//AddNewFlatListItem
 import React, {Component} from 'react';
-import MyVerticalScrollView from './components/scrollview/MyVerticalScrollView'
+import AddNewFlatListItem from './components/flatList/AddNewFlatListItem'
 
 export default class App extends Component {
     render() {
         return (
-            <MyVerticalScrollView/>
+            <AddNewFlatListItem/>
         );
     }
 }
