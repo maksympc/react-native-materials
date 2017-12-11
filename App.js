@@ -265,14 +265,26 @@
 //     }
 // }
 
-//HorizontalFlatList
+// //HorizontalFlatList
+// import React, {Component} from 'react';
+// import HorizontalFlatList from './components/horizontalFlatList/HorizontalFlatList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <HorizontalFlatList/>
+//         );
+//     }
+// }
+
+//BasicSectionList
 import React, {Component} from 'react';
-import HorizontalFlatList from './components/horizontalFlatList/HorizontalFlatList'
+import BasicSectionList from './components/sectionList/BasicSectionList'
 
 export default class App extends Component {
     render() {
         return (
-            <HorizontalFlatList/>
+            <BasicSectionList/>
         );
     }
 }
