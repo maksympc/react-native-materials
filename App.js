@@ -253,14 +253,26 @@
 //     }
 // }
 
-//BasicFlatList
+// //BasicFlatList
+// import React, {Component} from 'react';
+// import BasicFlatList from './components/veritcalFlatList/BasicFlatList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <BasicFlatList/>
+//         );
+//     }
+// }
+
+//HorizontalFlatList
 import React, {Component} from 'react';
-import BasicFlatList from './components/veritcalFlatList/BasicFlatList'
+import HorizontalFlatList from './components/horizontalFlatList/HorizontalFlatList'
 
 export default class App extends Component {
     render() {
         return (
-            <BasicFlatList/>
+            <HorizontalFlatList/>
         );
     }
 }
