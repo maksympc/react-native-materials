@@ -10,7 +10,7 @@ import {
     Platform,
     TouchableOpacity
 } from 'react-native'
-import flatListData from './FlatListData'
+import flatListData from './flatListData'
 import Swipeout from 'react-native-swipeout'
 import AddModal from "./AddModal";
 
@@ -97,14 +97,14 @@ class FlatListItem extends Component {
     }
 }
 
-export default class AddNewFlatListItem extends Component {
+export default class AddeditFlatListItem extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             deletedRowKey: null
         }
-        //this._onPressAdd = this._onPressAdd().bind(this); // bind "this" to AddNewFlatListItem element
+        //this._onPressAdd = this._onPressAdd().bind(this); // bind "this" to AddeditFlatListItem element
     }
 
     refreshFlatList = (deletedKey) => { // refres by changing state

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, FlatList, StyleSheet, Image, ActivityIndicator} from 'react-native'
-import flatListData from './FlatListData'
+import flatListData from './flatListData'
 
 
 class FlatListItem extends Component {

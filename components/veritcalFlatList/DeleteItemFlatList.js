@@ -1,16 +1,6 @@
 import React, {Component} from 'react';
-import {
-    Text,
-    View,
-    FlatList,
-    StyleSheet,
-    Image,
-    ActivityIndicator,
-    Alert,
-    Platform,
-    TouchableOpacity
-} from 'react-native'
-import flatListData from './FlatListData'
+import {Text, View, FlatList, StyleSheet, Image, ActivityIndicator, Alert} from 'react-native'
+import flatListData from './flatListData'
 import Swipeout from 'react-native-swipeout'
 
 class FlatListItem extends Component {
@@ -96,7 +86,7 @@ class FlatListItem extends Component {
     }
 }
 
-export default class ViewAboveFlatList extends Component {
+export default class DeleteItemFlatList extends Component {
 
     constructor(props) {
         super(props);
@@ -111,28 +101,9 @@ export default class ViewAboveFlatList extends Component {
         })
     }
 
-    _onPressAdd() {
-        alert('You add Item!')
-    }
-
     render() {
         return (
-            <View style={{flex: 1, marginTop: Platform.OS === 'ios' ? 20 : 0}}>
-                <View style={{
-                    height: 64,
-                    backgroundColor: 'tomato',
-                    justifyContent: 'center',
-                    alignItems: "flex-end"
-                }}>
-                    <TouchableOpacity style={{marginRight: 10}}
-                                      onPress={this._onPressAdd}
-                                      activeOpacity={0.5}
-                    >
-                        <Image style={{width: 35, height: 35}}
-                               source={require('../../resources/images/addbutton.png')}>
-                        </Image>
-                    </TouchableOpacity>
-                </View>
+            <View style={{flex: 1, marginTop: 22}}>
                 <FlatList
                     data={flatListData}
                     renderItem={({item, index}) => {

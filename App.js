@@ -207,7 +207,7 @@
 
 // //MyFlatList
 // import React, {Component} from 'react';
-// import MyFlatList from './components/flatList/MyFlatList'
+// import MyFlatList from './components/veritcalFlatList/MyFlatList'
 //
 // export default class App extends Component {
 //     render() {
@@ -219,7 +219,7 @@
 
 // //DeleteFlatListItem
 // import React, {Component} from 'react';
-// import DeleteItemFlatList from './components/flatList/DeleteItemFlatList'
+// import DeleteItemFlatList from './components/veritcalFlatList/DeleteItemFlatList'
 //
 // export default class App extends Component {
 //     render() {
@@ -231,7 +231,7 @@
 
 // //ViewAboveFlatList
 // import React, {Component} from 'react';
-// import ViewAboveFlatList from './components/flatList/ViewAboveFlatList'
+// import ViewAboveFlatList from './components/veritcalFlatList/ViewAboveFlatList'
 //
 // export default class App extends Component {
 //     render() {
@@ -241,14 +241,26 @@
 //     }
 // }
 
-//AddNewFlatListItem
+// //AddNewFlatListItem
+// import React, {Component} from 'react';
+// import AddNewFlatListItem from './components/veritcalFlatList/AddNewFlatListItem'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <AddNewFlatListItem/>
+//         );
+//     }
+// }
+
+//BasicFlatList
 import React, {Component} from 'react';
-import AddNewFlatListItem from './components/flatList/AddNewFlatListItem'
+import BasicFlatList from './components/veritcalFlatList/BasicFlatList'
 
 export default class App extends Component {
     render() {
         return (
-            <AddNewFlatListItem/>
+            <BasicFlatList/>
         );
     }
 }
