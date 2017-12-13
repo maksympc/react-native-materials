@@ -15,7 +15,7 @@ import {
 
 import Button from 'react-native-button';
 import Modal from 'react-native-modalbox';
-import flatListData from './flatListData';
+import {insertDataToServer} from './Server';
 
 
 var screen = Dimensions.get('window'); // screen from device
@@ -87,7 +87,7 @@ export default class AddModal extends Component {
                     onChangeText={(text) => this.setState({title: text})}
                     placeholder="Enter new food's description"
                     value={ // need add state property to store current description
-                        this.state.title }
+                        this.state.title}
                 />
                 <Button
                     style={{fontSize: 18, color: 'white'}}
@@ -105,14 +105,23 @@ export default class AddModal extends Component {
                             return;
                         }
                         const newKey = this.generateKey(24);
-                        const newFood = {
-                            key: newKey,
-                            name: this.state.albumId,
-                            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/64/Foods_%28cropped%29.jpg",
-                            foodDescription: this.state.title
+                        const newPhoto = {
+                            albumId: this.state.albumId,
+                            id: 1,
+                            title: this.state.title,
+                            url: "https://upload.wikimedia.org/wikipedia/commons/6/64/Foods_%28cropped%29.jpg",
+                            thumbnailUrl: "https://upload.wikimedia.org/wikipedia/commons/6/64/Foods_%28cropped%29.jpg",
                         };
-                        flatListData.push(newFood);
-                        this.props.parentFlatList.refreshFlatList(newKey);
+                        // flatListData.push(newPhoto);
+                        // this.props.parentFlatList.refreshFlatList(newKey);
+                        insertDataToServer(newPhoto).then((result) => {
+                            if (result.id == '5001') {
+                                alert("Element is successfully add! result:" + JSON.stringify(result));
+                                this.props.parentFlatList.refreshDataFromServer();
+                            } else {
+                                alert("Element isn't add!" + result);
+                            }
+                        });
                         this.refs.myModal.close();
                     }}>
                     Save
