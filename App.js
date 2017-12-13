@@ -302,14 +302,26 @@
 //     }
 // }
 
-//LoginComponent
+// //LoginComponent
+// import React, {Component} from 'react';
+// import LoginComponent from './components/firebase/LoginComponent'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <LoginComponent/>
+//         );
+//     }
+// }
+
+//DatabaseComponent
 import React, {Component} from 'react';
-import LoginComponent from './components/firebase/LoginComponent'
+import DatabaseComponent from './components/firebase/DatabaseComponent'
 
 export default class App extends Component {
     render() {
         return (
-            <LoginComponent/>
+            <DatabaseComponent/>
         );
     }
 }
