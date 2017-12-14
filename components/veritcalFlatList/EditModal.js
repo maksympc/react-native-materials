@@ -13,16 +13,16 @@ export default class EditModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            foodName: '',
-            foodDescription: ''
+            albumId: '',
+            title: ''
         };
     }
     showEditModal = (editingFood, flatlistItem) => {
         // console.log(`editingFood = ${JSON.stringify(editingFood)}`);
         this.setState({
             key: editingFood.key,
-            foodName: editingFood.name,
-            foodDescription: editingFood.foodDescription,
+            albumId: editingFood.name,
+            title: editingFood.title,
             flatlistItem: flatlistItem
         });
         this.refs.myModal.open();
@@ -63,9 +63,9 @@ export default class EditModal extends Component {
                         marginBottom: 10,
                         borderBottomWidth: 1
                     }}
-                    onChangeText={(text) => this.setState({ foodName: text })}
+                    onChangeText={(text) => this.setState({ albumId: text })}
                     placeholder="Enter food's name"
-                    value={this.state.foodName}
+                    value={this.state.albumId}
                 />
                 <TextInput
                     style={{
@@ -78,9 +78,9 @@ export default class EditModal extends Component {
                         borderBottomWidth: 1
                     }}
 
-                    onChangeText={(text) => this.setState({ foodDescription: text })}
+                    onChangeText={(text) => this.setState({ title: text })}
                     placeholder="Enter food's description"
-                    value={this.state.foodDescription}
+                    value={this.state.title}
                 />
                 <Button
                     style={{ fontSize: 18, color: 'white' }}
@@ -93,7 +93,7 @@ export default class EditModal extends Component {
                         backgroundColor: 'mediumseagreen'
                     }}
                     onPress={() => {
-                        if (this.state.foodName.length == 0 || this.state.foodDescription.length == 0) {
+                        if (this.state.albumId.length == 0 || this.state.title.length == 0) {
                             alert("You must enter food's name and description");
                             return;
                         }
@@ -102,8 +102,8 @@ export default class EditModal extends Component {
                         if (foundIndex < 0) {
                             return; //not found
                         }
-                        flatListData[foundIndex].name = this.state.foodName;
-                        flatListData[foundIndex].foodDescription = this.state.foodDescription;
+                        flatListData[foundIndex].name = this.state.albumId;
+                        flatListData[foundIndex].title = this.state.title;
                         //Refresh flatlist item
                         this.state.flatlistItem.refreshFlatListItem();
                         this.refs.myModal.close();

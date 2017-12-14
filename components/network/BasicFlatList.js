@@ -1,26 +1,37 @@
 import React, {Component} from 'react';
-import {AppRegistry, FlatList, StyleSheet, Text, View, Image, Alert, Platform, TouchableHighlight} from 'react-native';
-import flatListData from './flatListData';
+import {
+    AppRegistry,
+    FlatList,
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    Alert,
+    Platform,
+    TouchableHighlight,
+    RefreshControl
+} from 'react-native';
+
 import Swipeout from 'react-native-swipeout';
 
 import AddModal from './AddModal';
 import EditModal from './EditModal';
+import {getDataFromServer} from "./Server";
+
 
 class FlatListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
             activeRowKey: null,
-            numberOfRefresh: 0
+            numberOfRefresh: 0,
+            dataFromServer: [],
+            item: {} // when item changed, state is changed and component is re-rendered
         };
     }
 
-    refreshFlatListItem = () => {
-        this.setState((prevState) => {
-            return {
-                numberOfRefresh: prevState.numberOfRefresh + 1
-            };
-        });
+    refreshFlatListItem = (changedItem) => {
+        this.setState({item: changedItem});
     }
 
     render() {
@@ -32,13 +43,16 @@ class FlatListItem extends Component {
                 }
             },
             onOpen: (secId, rowId, direction) => {
-                this.setState({activeRowKey: this.props.item.key});
+                this.setState({activeRowKey: this.props.item.id});
             },
             right: [
                 {
                     onPress: () => {
                         // alert("Update");
-                        this.props.parentFlatList.refs.editModal.showEditModal(flatListData[this.props.index], this);
+                        //this.props.parentFlatList.refs.editModal.showEditModal(flatListData[this.props.index], this);
+                        let selectedItem = this.state.item.id ? this.state.item : this.props.item; // get updated item in state
+                        console.log("FlatListItem! at time, then edit button was pressed:"+JSON.stringify(selectedItem)); // works fine!
+                        this.props.parentFlatList.refs.editModal.showEditModal(selectedItem, this);
                     },
                     text: 'Edit', type: 'primary'
                 },
@@ -80,7 +94,7 @@ class FlatListItem extends Component {
                         backgroundColor: 'mediumseagreen'
                     }}>
                         <Image
-                            source={{uri: this.props.item.imageUrl}}
+                            source={{uri: this.props.item.thumbnailUrl}}
                             style={{width: 100, height: 100, margin: 5}}
                         >
 
@@ -90,8 +104,10 @@ class FlatListItem extends Component {
                             flexDirection: 'column',
                             height: 100
                         }}>
-                            <Text style={styles.flatListItem}>{this.props.item.name}</Text>
-                            <Text style={styles.flatListItem}>{this.props.item.title}</Text>
+                            <Text
+                                style={styles.flatListItem}>{this.state.item.id ? this.state.item.id : this.props.item.id}</Text>
+                            <Text
+                                style={styles.flatListItem}>{this.state.item.title ? this.state.item.title : this.props.item.title}</Text>
                         </View>
                     </View>
                     <View style={{
@@ -120,8 +136,26 @@ export default class BasicFlatList extends Component {
         super(props);
         this.state = ({
             deletedRowKey: null,
+            refreshing: false,
+            dataFromServer: [],
         });
         this._onPressAdd = this._onPressAdd.bind(this);
+    }
+
+    componentDidMount() {
+        this.refreshDataFromServer();
+    }
+
+    refreshDataFromServer = () => {
+        this.setState({refreshing: true});
+        getDataFromServer().then((data) => {
+            this.setState({dataFromServer: data})
+            this.setState({refreshing: false});
+        }).catch((error) => {
+            this.setState({dataFromServer: []});
+            this.setState({refreshing: false});
+            console.log('#refreshDataFromServer: error while fetching...!');
+        });
     }
 
     refreshFlatList = (activeKey) => {
@@ -138,9 +172,13 @@ export default class BasicFlatList extends Component {
         this.refs.addModal.showAddModal();
     }
 
+    onRefresh = () => {
+        this.refreshDataFromServer();
+    }
+
     render() {
         return (
-            <View style={{flex: 1, marginTop: Platform.OS === 'ios' ? 34 : 0}}>
+            <View style={{flex: 1, marginTop: Platform.OS === 'ios' ? 22 : 0}}>
                 <View style={{
                     backgroundColor: 'tomato',
                     flexDirection: 'row',
@@ -161,7 +199,8 @@ export default class BasicFlatList extends Component {
                 </View>
                 <FlatList
                     ref={"flatList"}
-                    data={flatListData}
+                    // data={flatListData}
+                    data={this.state.dataFromServer}
                     renderItem={({item, index}) => {
                         //console.log(`Item = ${JSON.stringify(item)}, index = ${index}`);
                         return (
@@ -169,6 +208,14 @@ export default class BasicFlatList extends Component {
 
                             </FlatListItem>);
                     }}
+                    keyExtractor={(item, index) => {
+                        return item.id
+                    }}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.onRefresh}
+                        />}
                 >
 
                 </FlatList>

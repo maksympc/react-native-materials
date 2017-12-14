@@ -253,14 +253,75 @@
 //     }
 // }
 
-//BasicFlatList
+// //BasicFlatList
+// import React, {Component} from 'react';
+// import BasicFlatList from './components/veritcalFlatList/BasicFlatList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <BasicFlatList/>
+//         );
+//     }
+// }
+
+// //HorizontalFlatList
+// import React, {Component} from 'react';
+// import HorizontalFlatList from './components/horizontalFlatList/HorizontalFlatList'
+//
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <HorizontalFlatList/>
+//         );
+//     }
+// }
+
+// //BasicSectionList
+// import React, {Component} from 'react';
+// import BasicSectionList from './components/sectionList/BasicSectionList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <BasicSectionList/>
+//         );
+//     }
+// }
+
+// //BasicFlatList
+// import React, {Component} from 'react';
+// import BasicFlatList from './components/network/BasicFlatList'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <BasicFlatList/>
+//         );
+//     }
+// }
+
+// //LoginComponent
+// import React, {Component} from 'react';
+// import LoginComponent from './components/firebase/LoginComponent'
+//
+// export default class App extends Component {
+//     render() {
+//         return (
+//             <LoginComponent/>
+//         );
+//     }
+// }
+
+//DatabaseComponent
 import React, {Component} from 'react';
-import BasicFlatList from './components/veritcalFlatList/BasicFlatList'
+import DatabaseComponent from './components/firebase/DatabaseComponent'
 
 export default class App extends Component {
     render() {
         return (
-            <BasicFlatList/>
+            <DatabaseComponent/>
         );
     }
 }

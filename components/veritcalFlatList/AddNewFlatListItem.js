@@ -85,7 +85,7 @@ class FlatListItem extends Component {
                                 {this.props.item.price}
                             </Text>
                             <Text style={style.flatListItem}>
-                                {this.props.item.foodDescription}
+                                {this.props.item.title}
                             </Text>
                         </View>
                     </View>
